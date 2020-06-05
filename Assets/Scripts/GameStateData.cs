@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class  GameStateData
+public class GameStateData
 {
 	public string code = string.Empty;
 
-	public Organ organ1;
-	public Organ organ2;
-	public Organ organ3;
+	public List<Organ> organs;
 
 	public List<Player> playerSegments;
 
