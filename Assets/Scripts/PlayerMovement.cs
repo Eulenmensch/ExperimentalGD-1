@@ -26,32 +26,38 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if ( Input.GetMouseButtonDown( 0 ) )
         {
-            startPoint = camera.ScreenToWorldPoint(Input.mousePosition);
+            startPoint = camera.ScreenToWorldPoint( Input.mousePosition );
             startPoint.z = 0;
         }
 
-        if (Input.GetMouseButton(0))
+        if ( Input.GetMouseButton( 0 ) )
         {
-            Vector3 currentPoint = camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 currentPoint = camera.ScreenToWorldPoint( Input.mousePosition );
             currentPoint.z = 0;
 
-            slingshotLine.RenderLine(startPoint, currentPoint);
+            slingshotLine.RenderLine( startPoint, currentPoint );
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if ( Input.GetMouseButtonUp( 0 ) )
         {
-            endPoint = camera.ScreenToWorldPoint(Input.mousePosition);
+            endPoint = camera.ScreenToWorldPoint( Input.mousePosition );
             endPoint.z = 0;
 
-            force = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x),
-                                Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
+            force = new Vector2( Mathf.Clamp( startPoint.x - endPoint.x, minPower.x, maxPower.x ),
+                                Mathf.Clamp( startPoint.y - endPoint.y, minPower.y, maxPower.y ) );
 
-            rb.AddForce(force * power, ForceMode2D.Impulse);
+            rb.AddForce( force * power, ForceMode2D.Impulse );
             slingshotLine.EndLine();
         }
+
+        if ( rb.velocity.magnitude >= 0.1f )
+        {
+            var dir = rb.velocity;
+            var angle = Mathf.Atan2( dir.y, dir.x ) * Mathf.Rad2Deg;
+            var q = Quaternion.AngleAxis( angle - 90, Vector3.forward );
+            transform.rotation = q;
+        }
     }
-
-
 }
