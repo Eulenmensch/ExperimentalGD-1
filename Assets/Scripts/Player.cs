@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Player
 {
-	public SerializableColor color; // colour 
+	public SerializableColor color = new SerializableColor(); // colour 
 	public string playerName; //(optional)
 	public string IP;
 	public Vector3[] trailPositions;
@@ -23,11 +23,14 @@ public class Player
 	}
 
 	private  void GenerateRandomColor()
-	{
+	{	
+		Debug.Log("generating random colour");
 		color.r = Random.Range(0, 256);
 		color.g = Random.Range(0, 256);
 		color.b = Random.Range(0, 256);
 		color.a = 255;
+
+		Debug.Log("finished generating random colour");
 	}
     
 } 

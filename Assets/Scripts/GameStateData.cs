@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class GameStateData
 {
 	public string code = string.Empty;
 
 	public List<Organ> organs;
 
-	public List<Player> playerSegments;
+	public List<Player> historicPlayers;
 
 	public List<Effect> activeEffects;  
 
@@ -27,12 +28,6 @@ public class GameStateData
 	public void AssignRandomCode()
 	{
 		code = GenerateRandomCode(5);
-	}
-
-	public string GetCurrentIP()
-	{
-		return string.Empty;
-
 	}
 
 }
