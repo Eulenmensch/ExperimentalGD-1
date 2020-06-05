@@ -4,19 +4,47 @@ using UnityEngine;
 
 public class EffectInteraction : MonoBehaviour
 {
-    public Effect _effect;
+
+
+    private Effect _effect;
+    private Organ _organ;
+
+    public GameObject _organGO;
+    public int _effectIndex;
+    public int _organIndex;
+
+    private void OnEnable()
+    {
+        FindObjectOfType<GameStateManager>().OnInitialized += Initialize;
+
+    }
+
+    private void OnDisable()
+    {
+        FindObjectOfType<GameStateManager>().OnInitialized -= Initialize;
+    }
+
+    private void Initialize()
+    {
+        _organ = FindObjectOfType<GameStateManager>().gameStateData.organs[_organIndex];
+        _effect = _organ.effects[_effectIndex];
+    }
 
     private void Update()
     {
-        if (_effect.isActivated)
+        if (_effect != null)
         {
-            _effect.currentTimer -= Time.deltaTime;
-            if (_effect.currentTimer <= 0)
+            if (_effect.isActivated)
             {
-                _effect.isActivated = false;
-                Debug.Log("DEACTIVATED");
+                _effect.currentTimer -= Time.deltaTime;
+                if (_effect.currentTimer <= 0)
+                {
+                    _effect.isActivated = false;
+                    Debug.Log("DEACTIVATED");
+                }
             }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,24 +79,24 @@ public class EffectInteraction : MonoBehaviour
 
     void ApplyInstantFood()
     {
-        Debug.Log("INSTANT FOOD");
+        Debug.Log("INSTANT FOOD from" + _organGO.name);
     }
 
     void ApplyMoreFood()
     {
-        Debug.Log("MORE FOOD");
+        Debug.Log("MORE FOOD" + _organGO.name);
 
     }
 
     void ApplyMoreTime()
     {
-        Debug.Log("MORE TIME");
+        Debug.Log("MORE TIME" + _organGO.name);
 
     }
 
     void ApplyRegeneration()
     {
-        Debug.Log("REGEN");
+        Debug.Log("REGEN" + _organGO.name);
 
     }
 

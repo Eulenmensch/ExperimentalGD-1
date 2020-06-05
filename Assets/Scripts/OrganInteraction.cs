@@ -156,6 +156,7 @@ public class OrganInteraction : MonoBehaviour
             && _parasite.statYellow == _parasite.statYellowMax)
         {
             FindObjectOfType<CanvasController>().OnGameWon();
+
         }
     }
 }
