@@ -110,12 +110,12 @@ MonoBehaviour:
     playerName: 
     IP: 
     trailPositions: []
-  statBlue: 60
+  statBlue: 0
   statRed: 0
-  statYellow: 60
-  statBlueMax: 0
-  statRedMax: 0
-  statYellowMax: 0
+  statYellow: 0
+  statBlueMax: 10
+  statRedMax: 10
+  statYellowMax: 10
 --- !u!114 &6058386436863297974
 MonoBehaviour:
   m_ObjectHideFlags: 0

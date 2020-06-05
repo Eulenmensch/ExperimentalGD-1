@@ -32,7 +32,6 @@ public class OrganInteraction : MonoBehaviour
     private void OnDisable()
     {
         FindObjectOfType<GameStateManager>().OnInitialized -= Initialize;
-
     }
 
     private void Initialize()
@@ -63,6 +62,11 @@ public class OrganInteraction : MonoBehaviour
             currentScaleFlesh = 0;
         }
 
+        if(_organ.currentFleshAmount <= 0)
+        {
+            this.GetComponent<CircleCollider2D>().enabled = false;
+        }
+
         hpAmount.localScale = new Vector3(currentScaleHP, currentScaleHP, 0);
         fleshAmount.localScale = new Vector3(currentScaleFlesh, currentScaleFlesh, 0);
         sizeModifier = 1 / _organ.maxHP;
@@ -76,7 +80,6 @@ public class OrganInteraction : MonoBehaviour
         }
         else if(_organ.currentFleshAmount > 0)
         {
-            Debug.Log("STARTED");
             _eatingCoroutine = StartCoroutine(EatFlesh());
         }
         
@@ -92,6 +95,8 @@ public class OrganInteraction : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitForSeconds(_organ.destructionRate);
+
             _organ.currentHP--;
             AddPointsToParasite(parasiteGain01);
             AddPointsToParasite(parasiteGain02);
@@ -100,12 +105,11 @@ public class OrganInteraction : MonoBehaviour
             if (hpAmount.localScale.x >=1)
             {
                 hpAmount.localScale = Vector2.one;
-                Debug.Log("ORGAN DESTROYED");
                 sizeModifier = 1 / _organ.maxFlesh;
+                statIncreaseAmount *= 2;
                 _eatingCoroutine = StartCoroutine(EatFlesh());
                 yield break;
             }
-            yield return new WaitForSeconds(_organ.destructionRate);
         }
 
     }
@@ -122,7 +126,7 @@ public class OrganInteraction : MonoBehaviour
             if (fleshAmount.localScale.x >= 1)
             {
                 fleshAmount.localScale = Vector2.one;
-                fleshAmount.parent.GetComponent<CircleCollider2D>().enabled = false;
+                this.GetComponent<CircleCollider2D>().enabled = false;
                 yield break;
             }
             yield return new WaitForSeconds(_organ.destructionRate);
@@ -134,14 +138,24 @@ public class OrganInteraction : MonoBehaviour
         switch (stats)
         {
             case ParasiteStats.blue:
-                _parasite.statBlue += statIncreaseAmount;
+                if(_parasite.statBlue < _parasite.statBlueMax)
+                    _parasite.statBlue += statIncreaseAmount;
                 break;
             case ParasiteStats.red:
-                _parasite.statRed += statIncreaseAmount;
+                if (_parasite.statRed < _parasite.statRedMax)
+                    _parasite.statRed += statIncreaseAmount;
                 break;
             case ParasiteStats.yellow:
-                _parasite.statYellow += statIncreaseAmount;
+                if (_parasite.statYellow < _parasite.statYellowMax)
+                    _parasite.statYellow += statIncreaseAmount;
                 break;
+        }
+
+        if(_parasite.statBlue == _parasite.statBlueMax 
+            && _parasite.statRed == _parasite.statRedMax 
+            && _parasite.statYellow == _parasite.statYellowMax)
+        {
+            FindObjectOfType<CanvasController>().OnGameWon();
         }
     }
 }
