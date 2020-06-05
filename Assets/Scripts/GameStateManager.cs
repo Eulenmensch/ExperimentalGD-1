@@ -16,7 +16,7 @@ public class GameStateManager : MonoBehaviour
 
 	public string serializationPreview;
 
-	private void Start()
+	private void Awake()
 	{
 		
 		_parasite = FindObjectOfType<Parasite>();
@@ -46,8 +46,10 @@ public class GameStateManager : MonoBehaviour
 
 	public void SaveState()
 	{
+		currentPlayer.trailPositions = _parasite.GetComponent<DrawTrail>().GetTrailPositions();
 		gameStateData.historicPlayers.Add(currentPlayer);
 		serializationPreview = SerializeObjectToString<GameStateData>(gameStateData);
+
 	}
 
 	public void LoadState()

@@ -46,4 +46,11 @@ public class DrawTrail : MonoBehaviour
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPlayerPos);
     }
+
+	public Vector3[] GetTrailPositions()
+	{
+		Vector3[] arrayToReturn = new Vector3[lineRenderer.positionCount];
+		lineRenderer.GetPositions(arrayToReturn);
+		return arrayToReturn;
+	}
 }
