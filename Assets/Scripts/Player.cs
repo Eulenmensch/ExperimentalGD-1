@@ -2,24 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+[System.Serializable]
+public class Player
 {
-	public List<PlayerSegment> playerSegments;
+	public SerializableColor color; // colour 
+	public string playerName; //(optional)
+	public string IP;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-	public void AddNewSegment(SerializableColor color)
+	public void GetIP()
 	{
-	
+		IP = IPManager.GetIP(ADDRESSFAM.IPv6);
 	}
-}
+    
+} 
+
