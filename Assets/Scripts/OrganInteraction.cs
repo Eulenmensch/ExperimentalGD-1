@@ -25,17 +25,27 @@ public class OrganInteraction : MonoBehaviour
     float currentScaleHP;
     float currentScaleFlesh;
 
-    private void Start()
+    private void OnEnable()
     {
-		_organ = FindObjectOfType<GameStateManager>().gameStateData.organs[organIndex];
+        FindObjectOfType<GameStateManager>().OnInitialized += Initialize;
+    }
+    private void OnDisable()
+    {
+        FindObjectOfType<GameStateManager>().OnInitialized -= Initialize;
 
-        if(this.gameObject.transform.childCount > 1)
+    }
+
+    private void Initialize()
+    {
+        _organ = FindObjectOfType<GameStateManager>().gameStateData.organs[organIndex];
+
+        if (this.gameObject.transform.childCount > 1)
         {
             hpAmount = this.gameObject.transform.GetChild(0);
             fleshAmount = this.gameObject.transform.GetChild(1);
         }
 
-        if((_organ.maxHP - _organ.currentHP) != 0)
+        if ((_organ.maxHP - _organ.currentHP) != 0)
         {
             currentScaleHP = 1 / (_organ.maxHP - _organ.currentHP);
         }
@@ -44,9 +54,9 @@ public class OrganInteraction : MonoBehaviour
             currentScaleHP = 0;
         }
 
-        if((_organ.maxFlesh - _organ.currentFleshAmount) != 0)
+        if ((_organ.maxFlesh - _organ.currentFleshAmount) != 0)
         {
-            currentScaleFlesh = 1/(_organ.maxFlesh - _organ.currentFleshAmount);
+            currentScaleFlesh = 1 / (_organ.maxFlesh - _organ.currentFleshAmount);
         }
         else
         {
