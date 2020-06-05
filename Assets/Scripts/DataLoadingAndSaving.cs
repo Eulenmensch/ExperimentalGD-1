@@ -7,6 +7,7 @@ using PlayFab.ServerModels;
 public static class DataLoadingAndSaving
 {
 	public static string recoveredValue;
+	public static System.Action OnDataRecovered;
 
 	public static void SetTitleData( string keyToSet, string valueToSet)
 	{
@@ -31,8 +32,9 @@ public static class DataLoadingAndSaving
 				if (result.Data == null || !result.Data.ContainsKey(keyToGet)) Debug.Log("No such key");
 				else
 				{
-					Debug.Log("Mathcing key found");
+					Debug.Log("Matching key found");
 					recoveredValue = result.Data[keyToGet];
+					OnDataRecovered?.Invoke();
 				}
 			},
 			error => {

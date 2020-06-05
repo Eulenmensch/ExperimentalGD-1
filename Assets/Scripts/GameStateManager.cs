@@ -14,7 +14,10 @@ public class GameStateManager : MonoBehaviour
 
 	Parasite _parasite;
 
-	public string serializationPreview;
+	public string serializedData;
+
+	public string EggCode;
+	
 
 	private void Awake()
 	{
@@ -28,6 +31,11 @@ public class GameStateManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.S))
 		{
 			SaveState();
+		}
+
+		if (Input.GetKeyDown(KeyCode.L))
+		{
+			LoadState();
 		}
 	}
 	public void CreateNewState()
@@ -48,16 +56,24 @@ public class GameStateManager : MonoBehaviour
 	{
 		currentPlayer.trailPositions = _parasite.GetComponent<DrawTrail>().GetTrailPositions();
 		gameStateData.historicPlayers.Add(currentPlayer);
-		serializationPreview = SerializeObjectToString<GameStateData>(gameStateData);
+		serializedData = SerializeObjectToString<GameStateData>(gameStateData);
 
+		DataLoadingAndSaving.SetTitleData(gameStateData.code, serializedData);
 	}
 
 	public void LoadState()
 	{
+		DataLoadingAndSaving.GetTitleData(EggCode);
+		DataLoadingAndSaving.OnDataRecovered += () =>
+		{
+			serializedData = DataLoadingAndSaving.recoveredValue;
+			gameStateData = XmlDeserializeFromString(serializedData);
+		};
+
 
 	}
 
-	public static string SerializeObjectToString<T>(T toSerialize)
+	public string SerializeObjectToString<T>(T toSerialize)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(toSerialize.GetType());
 
@@ -68,4 +84,20 @@ public class GameStateManager : MonoBehaviour
 		}
 	}
 
+	public GameStateData XmlDeserializeFromString(string serializedString)
+	{
+		var serializer = new XmlSerializer(typeof(GameStateData));
+		
+		StringReader stringReader = new StringReader(serializedString);
+
+		GameStateData result = (GameStateData) serializer.Deserialize(stringReader);
+
+		return result;
+	}
+
+
+	public void SetEggCode()
+	{
+
+	}
 }
