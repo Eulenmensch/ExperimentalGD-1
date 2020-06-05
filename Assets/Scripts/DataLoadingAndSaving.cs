@@ -4,12 +4,11 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ServerModels;
 
-public class DataLoadingAndSaving : MonoBehaviour
+public static class DataLoadingAndSaving
 {
-	public string td_key;
-	public string td_value;
+	public static string recoveredValue;
 
-	public void SetTitleData( string keyToSet, string valueToSet)
+	public static void SetTitleData( string keyToSet, string valueToSet)
 	{
 		PlayFabServerAPI.SetTitleData(
 			new SetTitleDataRequest
@@ -25,7 +24,7 @@ public class DataLoadingAndSaving : MonoBehaviour
 		);
 	}
 
-	public void GetTitleData(string keyToGet)
+	public static void GetTitleData(string keyToGet)
 	{
 		PlayFabServerAPI.GetTitleData(new GetTitleDataRequest(),
 			result => {
@@ -33,7 +32,7 @@ public class DataLoadingAndSaving : MonoBehaviour
 				else
 				{
 					Debug.Log("Mathcing key found");
-					td_value = result.Data[keyToGet];
+					recoveredValue = result.Data[keyToGet];
 				}
 			},
 			error => {

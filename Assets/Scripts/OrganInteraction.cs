@@ -8,11 +8,12 @@ public class OrganInteraction : MonoBehaviour
     
     Transform _attackedOrgan;
     Coroutine _eatingCoroutine;
+	public int organIndex;
     public Organ _organ;
 
     private void Start()
     {
-        
+		_organ = FindObjectOfType<GameStateManager>().gameStateData.organs[organIndex];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
