@@ -231,6 +231,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effect02Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 8196799507799405628, guid: aa83c54127321cb4598869178da9b53f,
+        type: 3}
+      propertyPath: effectObject
+      value: 
+      objectReference: {fileID: 1600945014}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa83c54127321cb4598869178da9b53f, type: 3}
 --- !u!1001 &1355092662
@@ -332,6 +337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137631583902928802, guid: ede48441d0dc2f04695ddaddb776115c,
         type: 3}
+      propertyPath: effects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137631583902928802, guid: ede48441d0dc2f04695ddaddb776115c,
+        type: 3}
       propertyPath: effects.Array.data[0].effectObject
       value: 
       objectReference: {fileID: 1910894472}
@@ -348,6 +358,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1272657006}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1600945017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8196799507799405628, guid: aa83c54127321cb4598869178da9b53f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1272657006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600945014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1da93d54f055f448d5a5f8b60b05cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1756006886
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +459,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4197311211282189737}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1910894475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8196799507799405628, guid: aa83c54127321cb4598869178da9b53f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4197311211282189737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910894472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1da93d54f055f448d5a5f8b60b05cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2088768088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -447,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 16126622547184560, guid: ede48441d0dc2f04695ddaddb776115c,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 16126622547184562, guid: ede48441d0dc2f04695ddaddb776115c,
         type: 3}
@@ -534,6 +568,16 @@ PrefabInstance:
       propertyPath: effects.Array.data[1].effectObject
       value: 
       objectReference: {fileID: 1600945014}
+    - target: {fileID: 8137631583902928802, guid: ede48441d0dc2f04695ddaddb776115c,
+        type: 3}
+      propertyPath: effects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1910894475}
+    - target: {fileID: 8137631583902928802, guid: ede48441d0dc2f04695ddaddb776115c,
+        type: 3}
+      propertyPath: effects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1600945017}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede48441d0dc2f04695ddaddb776115c, type: 3}
 --- !u!1001 &16126621621197252
@@ -677,7 +721,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effect01Yellow
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6991941317860056009, guid: aa83c54127321cb4598869178da9b53f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aa83c54127321cb4598869178da9b53f, type: 3}
 --- !u!1001 &6058386438462093515
 PrefabInstance:

@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6058386436863297972}
   - component: {fileID: 6058386436863297973}
+  - component: {fileID: 2509524962114685039}
   - component: {fileID: 6058386436863297974}
+  - component: {fileID: 517901386353444046}
   - component: {fileID: 6058386436863297968}
   - component: {fileID: 6058386436863297969}
   - component: {fileID: 6058386436863297970}
@@ -86,6 +88,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2509524962114685039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058386436863297980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad95c0779ad92443bd0f8307af79808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSegments: []
+  statBlue: 0
+  statGreen: 0
+  statYellow: 0
+  statBlueMax: 0
+  statGreenMax: 0
+  statYellowMax: 0
 --- !u!114 &6058386436863297974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +122,23 @@ MonoBehaviour:
   power: 2
   minPower: {x: -3, y: -3}
   maxPower: {x: 3, y: 3}
+--- !u!114 &517901386353444046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058386436863297980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34037a864e0f1a45be23e54d4426336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailPrefab: {fileID: 2961686165574809337, guid: e88bf71b84f47fb44b7c52ac441fc6ab,
+    type: 3}
+  currentTrail: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  playerPositions: []
 --- !u!114 &6058386436863297968
 MonoBehaviour:
   m_ObjectHideFlags: 0

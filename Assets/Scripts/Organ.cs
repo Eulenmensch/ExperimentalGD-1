@@ -6,7 +6,8 @@ using UnityEngine;
 public class Organ : MonoBehaviour
 {
 	public float currentHP;
-	public float currentFleshAmmount;
+	public float currentFleshAmount;
+    public float destructionRate;
 	public float regenerationRate;
 
 	public List<Effect> effects;
@@ -17,7 +18,7 @@ public class Organ : MonoBehaviour
     {
         foreach(Effect effect in effects)
         {
-            effect.effectObject.GetComponent<SpriteRenderer>().color = this.GetComponent<SpriteRenderer>().color;
+            effect.GetComponent<SpriteRenderer>().color = this.GetComponent<SpriteRenderer>().color;
         }
     }
 

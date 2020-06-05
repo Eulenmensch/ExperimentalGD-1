@@ -97,12 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84612b9232d555049b1f7d883a61a0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  currentFleshAmmount: 0
-  regenerationRate: 0
+  currentHP: 100
+  currentFleshAmount: 80
+  regenerationRate: 10
   effects:
-  - effectObject: {fileID: 0}
-  - effectObject: {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &4520210513176584151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  currentFleshAmmount: 0
+  currentFleshAmount: 0
   regenerationRate: 0
   effects: []
