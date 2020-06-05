@@ -96,10 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac7c9ea1b0167b44a7751903d461591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parasite: {fileID: 0}
+  _parasite: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+    type: 3}
   parasiteGain01: 0
   parasiteGain02: 0
   statIncreaseAmount: 0
+  organIndex: 0
   _organ:
     currentHP: 0
     currentFleshAmount: 0

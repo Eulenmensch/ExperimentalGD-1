@@ -12,9 +12,6 @@ public class OrganInteraction : MonoBehaviour
     public ParasiteStats parasiteGain02;
     public int statIncreaseAmount;
 
-
-    public Organ _organ;
-
     Transform _attackedOrgan;
     Coroutine _eatingCoroutine;
 	public int organIndex;
@@ -69,7 +66,7 @@ public class OrganInteraction : MonoBehaviour
                 _parasite.statBlue += statIncreaseAmount;
                 break;
             case ParasiteStats.red:
-                _parasite.statGreen += statIncreaseAmount;
+                _parasite.statRed += statIncreaseAmount;
                 break;
             case ParasiteStats.yellow:
                 _parasite.statYellow += statIncreaseAmount;

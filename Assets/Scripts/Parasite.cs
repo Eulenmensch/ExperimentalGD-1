@@ -8,11 +8,11 @@ public class Parasite: MonoBehaviour
 	public Player activePlayer;
 
 	public int statBlue;
-    public int statGreen;
+    public int statRed;
     public int statYellow;
 
     public int statBlueMax;
-    public int statGreenMax;
+    public int statRedMax;
     public int statYellowMax;
 
     // Start is called before the first frame update

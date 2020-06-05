@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Effect : MonoBehaviour
+public class Effect
 {  
-    [SerializeField] int effectStackMax;
+    public int effectStackMax;
+
+    public float effectTimer;
 
     List<Subeffect> subeffects;
 
@@ -20,14 +22,6 @@ public class Effect : MonoBehaviour
     //{
 
     //}
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("EffectActivated");
-        collision.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
-        //Apply();
-    }
 
 
     public void Apply()
