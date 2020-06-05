@@ -12,13 +12,27 @@ public class GameStateData
 	public Organ organ2;
 	public Organ organ3;
 
-	public List<PlayerSegment> playerSegments;
+	public List<Player> playerSegments;
 
 	public List<string> historicalIPs;
 
-	public void AssignRandomCode( int codeLength)
-	{
+	public List<Effect> activeEffects;  
 
+	public string GenerateRandomCode( int codeLength)
+	{
+		string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		string randomString = string.Empty;
+		for (int i = 0; i < codeLength; i++)
+		{
+			int rnd = Random.Range(0, chars.Length);
+			randomString += chars[rnd];
+		}
+		return randomString;
+	}
+
+	public void AssignRandomCode()
+	{
+		code = GenerateRandomCode(5);
 	}
 
 	public string GetCurrentIP()

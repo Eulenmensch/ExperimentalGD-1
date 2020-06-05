@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+[System.Serializable]
+public class Player: MonoBehaviour
 {
-	public List<PlayerSegment> playerSegments;
+	public SerializableColor color; // colour 
+	public string playerName; //(optional)
+	public string IP;
 
     public int statBlue;
     public int statGreen;
@@ -26,17 +29,12 @@ public class Player : MonoBehaviour
         };
 
         GetComponent<DrawTrail>().CreateTrail();
-        AddNewSegment(sColor);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-	public void AddNewSegment(SerializableColor color)
+	public void GetIP()
 	{
-	
+		IP = IPManager.GetIP(ADDRESSFAM.IPv6);
 	}
-}
+    
+} 
+
