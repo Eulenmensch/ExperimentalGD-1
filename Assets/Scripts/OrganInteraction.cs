@@ -14,24 +14,62 @@ public class OrganInteraction : MonoBehaviour
 
     Transform _attackedOrgan;
     Coroutine _eatingCoroutine;
+
 	public int organIndex;
     public Organ _organ;
 
+    Transform hpAmount;
+    Transform fleshAmount;
 
+    float sizeModifier;
+    float currentScaleHP;
+    float currentScaleFlesh;
 
     private void Start()
     {
 		_organ = FindObjectOfType<GameStateManager>().gameStateData.organs[organIndex];
+
+        if(this.gameObject.transform.childCount > 1)
+        {
+            hpAmount = this.gameObject.transform.GetChild(0);
+            fleshAmount = this.gameObject.transform.GetChild(1);
+        }
+
+        if((_organ.maxHP - _organ.currentHP) != 0)
+        {
+            currentScaleHP = 1 / (_organ.maxHP - _organ.currentHP);
+        }
+        else
+        {
+            currentScaleHP = 0;
+        }
+
+        if((_organ.maxFlesh - _organ.currentFleshAmount) != 0)
+        {
+            currentScaleFlesh = 1/(_organ.maxFlesh - _organ.currentFleshAmount);
+        }
+        else
+        {
+            currentScaleFlesh = 0;
+        }
+
+        hpAmount.localScale = new Vector3(currentScaleHP, currentScaleHP, 0);
+        fleshAmount.localScale = new Vector3(currentScaleFlesh, currentScaleFlesh, 0);
+        sizeModifier = 1 / _organ.maxHP;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _attackedOrgan = this.transform;
-        if (this.transform.childCount > 0)
+        if (_organ.currentHP > 0)
         {
-            _attackedOrgan = this.transform.GetChild(0);
+            _eatingCoroutine = StartCoroutine(EatOrgan());
         }
-        _eatingCoroutine = StartCoroutine(EatOrgan(_attackedOrgan));
+        else if(_organ.currentFleshAmount > 0)
+        {
+            Debug.Log("STARTED");
+            _eatingCoroutine = StartCoroutine(EatFlesh());
+        }
+        
         collision.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
@@ -40,17 +78,21 @@ public class OrganInteraction : MonoBehaviour
         StopCoroutine(_eatingCoroutine);
     }
 
-    private IEnumerator EatOrgan(Transform organ)
+    private IEnumerator EatOrgan()
     {
         while (true)
         {
+            _organ.currentHP--;
             AddPointsToParasite(parasiteGain01);
             AddPointsToParasite(parasiteGain02);
 
-            organ.localScale -= new Vector3(0.21f, 0.21f, 0);
-            if (organ.localScale.x <= 0)
+            hpAmount.localScale += new Vector3(sizeModifier, sizeModifier, 0);
+            if (hpAmount.localScale.x >=1)
             {
-                Destroy(organ.gameObject);
+                hpAmount.localScale = Vector2.one;
+                Debug.Log("ORGAN DESTROYED");
+                sizeModifier = 1 / _organ.maxFlesh;
+                _eatingCoroutine = StartCoroutine(EatFlesh());
                 yield break;
             }
             yield return new WaitForSeconds(_organ.destructionRate);
@@ -58,6 +100,25 @@ public class OrganInteraction : MonoBehaviour
 
     }
 
+    private IEnumerator EatFlesh()
+    {
+        while (true)
+        {
+            _organ.currentFleshAmount--;
+            AddPointsToParasite(parasiteGain01);
+            AddPointsToParasite(parasiteGain02);
+
+            fleshAmount.localScale += new Vector3(sizeModifier, sizeModifier, 0);
+            if (fleshAmount.localScale.x >= 1)
+            {
+                fleshAmount.localScale = Vector2.one;
+                fleshAmount.parent.GetComponent<CircleCollider2D>().enabled = false;
+                yield break;
+            }
+            yield return new WaitForSeconds(_organ.destructionRate);
+        }
+
+    }
     private void AddPointsToParasite(ParasiteStats stats)
     {
         switch (stats)

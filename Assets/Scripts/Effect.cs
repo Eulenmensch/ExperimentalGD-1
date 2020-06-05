@@ -7,7 +7,13 @@ public class Effect
 {  
     public int effectStackMax;
 
-    public float effectTimer;
+    public float effectDuration;
+    public float currentTimer;
+    public bool isActivated;
+
+    public enum EffectType { InstantFood, MoreFood, MoreTime, Regeneration};
+
+    public EffectType effectType;
 
     List<Subeffect> subeffects;
 

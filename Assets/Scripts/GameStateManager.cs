@@ -50,6 +50,9 @@ public class GameStateManager : MonoBehaviour
 
 		_parasite.activePlayer = currentPlayer;
 		_parasite.historicPlayers = new List<Player>();
+        Color color = new Color(currentPlayer.color.r, currentPlayer.color.g, currentPlayer.color.b);
+        _parasite.GetComponent<DrawTrail>().trailPrefab.GetComponent<LineRenderer>().startColor = color;
+        _parasite.GetComponent<DrawTrail>().trailPrefab.GetComponent<LineRenderer>().endColor = color;
 	}
 
 	public void SaveState()
