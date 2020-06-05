@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrganInteraction : MonoBehaviour
 {
-    public Player _player;
+    public Parasite _player;
     
     Transform _attackedOrgan;
     Coroutine _eatingCoroutine;

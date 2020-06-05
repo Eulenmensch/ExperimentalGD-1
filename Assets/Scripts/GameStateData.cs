@@ -12,7 +12,7 @@ public class GameStateData
 	public Organ organ2;
 	public Organ organ3;
 
-	public List<Player> playerSegments;
+	public List<Parasite> playerSegments;
 
 	public List<string> historicalIPs;
 

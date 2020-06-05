@@ -10,18 +10,18 @@ public class DrawTrail : MonoBehaviour
     public LineRenderer lineRenderer;
     public List<Vector2> playerPositions;
 
-    Player player;
+    Parasite parasite;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Player>();
+        parasite = GetComponent<Parasite>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 tempPlayerPos = player.transform.position;
+        Vector2 tempPlayerPos = parasite.transform.position;
         if(Vector2.Distance(tempPlayerPos, playerPositions[playerPositions.Count - 1]) > 0.4f)
         {
             UpdateTrail(tempPlayerPos);
@@ -30,11 +30,12 @@ public class DrawTrail : MonoBehaviour
 
     public void CreateTrail()
     {
+        Debug.Log("CREATED");
         currentTrail = Instantiate(trailPrefab, Vector3.zero, Quaternion.identity);
         lineRenderer = currentTrail.GetComponent<LineRenderer>();
         playerPositions.Clear();
-        playerPositions.Add(player.transform.position);
-        playerPositions.Add(player.transform.position);
+        playerPositions.Add(parasite.transform.position);
+        playerPositions.Add(parasite.transform.position);
         lineRenderer.SetPosition(0, playerPositions[0]);
         lineRenderer.SetPosition(1, playerPositions[1]);
     }

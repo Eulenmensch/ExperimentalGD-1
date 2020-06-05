@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class Parasite: MonoBehaviour
 {
-	public List<Player> playerSegments;
+	public List<Parasite> playerSegments;
+
+    public int statBlue;
+    public int statGreen;
+    public int statYellow;
+
+    public int statBlueMax;
+    public int statGreenMax;
+    public int statYellowMax;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SerializableColor sColor = new SerializableColor
+        {
+            r = 1,
+            g = 1,
+            b = 1,
+            a = 1
+        };
+        AddNewSegment(sColor);
+
+        GetComponent<DrawTrail>().CreateTrail();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-	public void AddNewSegment(SerializableColor color)
+    public void AddNewSegment(SerializableColor color)
 	{
 	
 	}
