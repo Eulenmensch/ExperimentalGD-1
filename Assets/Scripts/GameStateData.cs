@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateData
+public class  GameStateData
 {
 	public string code = string.Empty;
-
-	public SerializableColor[] vertexColors;
 
 	public Organ organ1;
 	public Organ organ2;
 	public Organ organ3;
 
-	public List<Parasite> playerSegments;
-
-	public List<string> historicalIPs;
+	public List<Player> playerSegments;
 
 	public List<Effect> activeEffects;  
 

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Parasite: MonoBehaviour
 {
-	public List<Parasite> playerSegments;
+	public List<Player> historicPlayers;
+	public Player activePlayer;
 
-    public int statBlue;
+	public int statBlue;
     public int statGreen;
     public int statYellow;
 
@@ -17,20 +18,34 @@ public class Parasite: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SerializableColor sColor = new SerializableColor
-        {
-            r = 1,
-            g = 1,
-            b = 1,
-            a = 1
-        };
-        AddNewSegment(sColor);
-
         GetComponent<DrawTrail>().CreateTrail();
     }
 
-    public void AddNewSegment(SerializableColor color)
+	public void GeneratePlayer()
 	{
+		//TO DO spawn head????
+
+		for (int i = 0; i < historicPlayers.Count; i++)
+		{
+			AddParasiteSegment(historicPlayers[i]);
+		}
+
+		AddParasiteSegment(activePlayer);
+
+	}
+
+	public void AddParasiteSegment(Player player)
+	{
+		// spawn segment attached to the head in a correct colour
 	
 	}
+
+	public void LoadHistoricTrails()
+	{
+		// recover trailPositions from each player and draw them on screen.
+	}
+
+
+
+
 }

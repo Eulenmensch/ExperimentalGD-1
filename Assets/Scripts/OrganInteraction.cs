@@ -8,11 +8,11 @@ public class OrganInteraction : MonoBehaviour
     
     Transform _attackedOrgan;
     Coroutine _eatingCoroutine;
-    Organ _organ;
+    public Organ _organ;
 
     private void Start()
     {
-        _organ = GetComponent<Organ>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
