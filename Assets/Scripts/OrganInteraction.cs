@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class OrganInteraction : MonoBehaviour
 {
-    public Parasite _player;
-    
+    public enum ParasiteStats { blue, red, yellow };
+
+    public Parasite _parasite;
+
+    public ParasiteStats parasiteGain01;
+    public ParasiteStats parasiteGain02;
+    public int statIncreaseAmount;
+
     Transform _attackedOrgan;
     Coroutine _eatingCoroutine;
 	public int organIndex;
     public Organ _organ;
+
+
 
     private void Start()
     {
@@ -36,17 +44,33 @@ public class OrganInteraction : MonoBehaviour
     {
         while (true)
         {
-            _player.statBlue++;
+            AddPointsToParasite(parasiteGain01);
+            AddPointsToParasite(parasiteGain02);
 
             organ.localScale -= new Vector3(0.21f, 0.21f, 0);
             if (organ.localScale.x <= 0)
             {
-                Debug.Log("Destroyed! " + organ.name);
                 Destroy(organ.gameObject);
                 yield break;
             }
             yield return new WaitForSeconds(_organ.destructionRate);
         }
 
+    }
+
+    private void AddPointsToParasite(ParasiteStats stats)
+    {
+        switch (stats)
+        {
+            case ParasiteStats.blue:
+                _parasite.statBlue += statIncreaseAmount;
+                break;
+            case ParasiteStats.red:
+                _parasite.statRed += statIncreaseAmount;
+                break;
+            case ParasiteStats.yellow:
+                _parasite.statYellow += statIncreaseAmount;
+                break;
+        }
     }
 }

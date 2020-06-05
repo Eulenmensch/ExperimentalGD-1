@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 16126622547184562}
   - component: {fileID: 16126622547184561}
-  - component: {fileID: 8137631583902928802}
   - component: {fileID: 4520210513176584151}
   - component: {fileID: 16126622547184560}
   m_Layer: 0
@@ -85,24 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8137631583902928802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 16126622547184566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84612b9232d555049b1f7d883a61a0d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHP: 100
-  currentFleshAmount: 80
-  regenerationRate: 10
-  effects:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &4520210513176584151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +96,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac7c9ea1b0167b44a7751903d461591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructionDelta: 2
+  _parasite: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+    type: 3}
+  parasiteGain01: 0
+  parasiteGain02: 0
+  statIncreaseAmount: 0
+  organIndex: 0
+  _organ:
+    currentHP: 0
+    currentFleshAmount: 0
+    destructionRate: 0
+    regenerationRate: 0
+    color:
+      r: 0
+      g: 0
+      b: 0
+      a: 0
+    effects: []
 --- !u!58 &16126622547184560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -142,7 +139,6 @@ GameObject:
   m_Component:
   - component: {fileID: 627385597951044034}
   - component: {fileID: 6768844064661918377}
-  - component: {fileID: 8208753046569120225}
   m_Layer: 0
   m_Name: Organ
   m_TagString: Untagged
@@ -214,19 +210,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8208753046569120225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8167115731210580381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84612b9232d555049b1f7d883a61a0d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHP: 0
-  currentFleshAmount: 0
-  regenerationRate: 0
-  effects: []

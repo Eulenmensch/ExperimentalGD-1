@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class ParasiteMovement : MonoBehaviour
 {
     [SerializeField] float power = 10f;
 
