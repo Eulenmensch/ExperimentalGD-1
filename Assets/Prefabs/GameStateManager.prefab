@@ -49,31 +49,32 @@ MonoBehaviour:
     organs: []
     historicPlayers: []
     activeEffects: []
+  initilaized: 0
   defaulOrgans:
-  - currentHP: 0
-    currentFleshAmount: 0
-    destructionRate: 0
-    regenerationRate: 0
+  - currentHP: 20
+    currentFleshAmount: 20
+    destructionRate: 2
+    regenerationRate: 5
     color:
       r: 0
       g: 0
       b: 0
       a: 0
     effects: []
-  - currentHP: 0
-    currentFleshAmount: 0
-    destructionRate: 0
-    regenerationRate: 0
+  - currentHP: 20
+    currentFleshAmount: 20
+    destructionRate: 1
+    regenerationRate: 2
     color:
       r: 0
       g: 0
       b: 0
       a: 0
     effects: []
-  - currentHP: 0
-    currentFleshAmount: 0
-    destructionRate: 0
-    regenerationRate: 0
+  - currentHP: 20
+    currentFleshAmount: 20
+    destructionRate: 2
+    regenerationRate: 4
     color:
       r: 0
       g: 0
@@ -89,7 +90,6 @@ MonoBehaviour:
     playerName: 
     IP: 
     trailPositions: []
-  serializedData: 
   EggCode: 
 --- !u!1001 &306372887906011494
 PrefabInstance:
@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5910061005154067173, guid: 302fccac527e6b64cb4d224feae3b88f,
+        type: 3}
+      propertyPath: gameStateManager
+      value: 
+      objectReference: {fileID: 3661407133085466106}
     - target: {fileID: 6306948824866027556, guid: 302fccac527e6b64cb4d224feae3b88f,
         type: 3}
       propertyPath: m_Name

@@ -7,15 +7,14 @@ using System.IO;
 public class GameStateManager : MonoBehaviour
 {
 	public GameStateData gameStateData;
+	public bool initilaized = false;
+	public System.Action OnInitialized;
 
 	public List<Organ> defaulOrgans;
-
 	public Player currentPlayer;
 
 	Parasite _parasite;
-
-	public string serializedData;
-
+	string serializedData;
 	public string EggCode;
 	
 
@@ -23,7 +22,7 @@ public class GameStateManager : MonoBehaviour
 	{
 		
 		_parasite = FindObjectOfType<Parasite>();
-		CreateNewState();
+		
 	}
 
 	public void Update()
@@ -50,6 +49,9 @@ public class GameStateManager : MonoBehaviour
 
 		_parasite.activePlayer = currentPlayer;
 		_parasite.historicPlayers = new List<Player>();
+
+		initilaized = true;
+		OnInitialized?.Invoke();
 	}
 
 	public void SaveState()
@@ -68,6 +70,8 @@ public class GameStateManager : MonoBehaviour
 		{
 			serializedData = DataLoadingAndSaving.recoveredValue;
 			gameStateData = XmlDeserializeFromString(serializedData);
+			initilaized = true;
+			OnInitialized?.Invoke();
 		};
 
 
@@ -93,11 +97,5 @@ public class GameStateManager : MonoBehaviour
 		GameStateData result = (GameStateData) serializer.Deserialize(stringReader);
 
 		return result;
-	}
-
-
-	public void SetEggCode()
-	{
-
 	}
 }
