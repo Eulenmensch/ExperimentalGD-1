@@ -95,9 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a31f712fc87c549825fc390c8fe719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effect:
-    effectStackMax: 0
-    effectTimer: 0
+  _organInteraction: {fileID: 0}
+  _effectIndex: 0
+  _organIndex: 0
 --- !u!58 &4880600376161711310
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -14,6 +14,10 @@ public class Effect
     public enum EffectType { InstantFood, MoreFood, MoreTime, Regeneration};
 
     public EffectType effectType;
+    public int instantGain = 3;
+    public int moreFood = 2;
+    public int moreTime = 30;
+    public int regenRate = 2;
 
     List<Subeffect> subeffects;
 

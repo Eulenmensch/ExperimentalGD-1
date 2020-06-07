@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CanvasController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CanvasController : MonoBehaviour
 
 	public GameObject startScreen;
 	public GameObject endScreen;
+    public GameObject gameOverScreen;
+    public GameObject timer;
 
 	public void ShowStartScreen()
 	{
@@ -35,19 +38,32 @@ public class CanvasController : MonoBehaviour
 	public void StartNewChain()
 	{
 		gameStateManager.CreateNewState();
+        timer.SetActive(true);
+        
 	}
 
 	public void ContinueUsingCode()
 	{
 		gameStateManager.EggCode = codeInputField.text;
 		gameStateManager.LoadState();
-	}
+        timer.SetActive(true);
 
-	public void OnGameWon()
+    }
+
+    public void OnGameWon()
 	{
 		codetoShow.text = gameStateManager.gameStateData.code;
 		ShowEndScreen();
 	}
 
+    public void OnGameLost()
+    {
+        Time.timeScale = 0;
+        gameOverScreen.SetActive(true);
+    }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

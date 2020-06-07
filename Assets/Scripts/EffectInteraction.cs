@@ -9,10 +9,10 @@ public class EffectInteraction : MonoBehaviour
     private Effect _effect;
     private Organ _organ;
 
-    public GameObject _organGO;
+    public OrganInteraction _organInteraction;
     public int _effectIndex;
     public int _organIndex;
-
+    GameObject player;
     private void OnEnable()
     {
         FindObjectOfType<GameStateManager>().OnInitialized += Initialize;
@@ -28,10 +28,16 @@ public class EffectInteraction : MonoBehaviour
     {
         _organ = FindObjectOfType<GameStateManager>().gameStateData.organs[_organIndex];
         _effect = _organ.effects[_effectIndex];
+        
+        player = GameObject.Find("Player");
     }
 
     private void Update()
     {
+        if(_organ != null && _organ.currentHP <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
         if (_effect != null)
         {
             if (_effect.isActivated)
@@ -47,7 +53,7 @@ public class EffectInteraction : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!_effect.isActivated)
         {
@@ -79,24 +85,27 @@ public class EffectInteraction : MonoBehaviour
 
     void ApplyInstantFood()
     {
-        Debug.Log("INSTANT FOOD from" + _organGO.name);
+        _organInteraction.AddPointsToParasite(_organInteraction.parasiteGain01, _effect.instantGain);
+        _organInteraction.AddPointsToParasite(_organInteraction.parasiteGain02, _effect.instantGain);
+
+        _organ.currentHP -= _effect.instantGain * 2;
+        float tempScale = _organInteraction.CalculateScale(_organ.maxHP, _organ.currentHP);
+        _organInteraction.hpAmount.localScale = new Vector3(tempScale, tempScale, 0);
     }
 
     void ApplyMoreFood()
     {
-        Debug.Log("MORE FOOD" + _organGO.name);
-
+        
     }
 
     void ApplyMoreTime()
     {
-        Debug.Log("MORE TIME" + _organGO.name);
-
+        FindObjectOfType<Timer>().timer += _effect.moreTime;
+        StartCoroutine(_organInteraction.LooseLife(_effect.moreTime));
     }
 
     void ApplyRegeneration()
     {
-        Debug.Log("REGEN" + _organGO.name);
 
     }
 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class OrganInteraction : MonoBehaviour
 {
-    public enum ParasiteStats { blue, red, yellow };
+    public enum FoodTypes { blue, red, yellow };
 
     public Parasite _parasite;
 
-    public ParasiteStats parasiteGain01;
-    public ParasiteStats parasiteGain02;
+    public FoodTypes parasiteGain01;
+    public FoodTypes parasiteGain02;
     public int statIncreaseAmount;
 
     Transform _attackedOrgan;
@@ -18,10 +18,10 @@ public class OrganInteraction : MonoBehaviour
 	public int organIndex;
     public Organ _organ;
 
-    Transform hpAmount;
-    Transform fleshAmount;
+    public Transform hpAmount;
+    public Transform fleshAmount;
 
-    float sizeModifier;
+    public float sizeModifier;
     float currentScaleHP;
     float currentScaleFlesh;
 
@@ -43,73 +43,70 @@ public class OrganInteraction : MonoBehaviour
             hpAmount = this.gameObject.transform.GetChild(0);
             fleshAmount = this.gameObject.transform.GetChild(1);
         }
-
-        if ((_organ.maxHP - _organ.currentHP) != 0)
-        {
-            currentScaleHP = 1 / (_organ.maxHP - _organ.currentHP);
-        }
-        else
-        {
-            currentScaleHP = 0;
-        }
-
-        if ((_organ.maxFlesh - _organ.currentFleshAmount) != 0)
-        {
-            currentScaleFlesh = 1 / (_organ.maxFlesh - _organ.currentFleshAmount);
-        }
-        else
-        {
-            currentScaleFlesh = 0;
-        }
-
+       
         if(_organ.currentFleshAmount <= 0)
         {
             this.GetComponent<CircleCollider2D>().enabled = false;
         }
+
+        currentScaleHP = CalculateScale(_organ.maxHP, _organ.currentHP);
+        currentScaleFlesh = CalculateScale(_organ.maxFlesh, _organ.currentFleshAmount);
 
         hpAmount.localScale = new Vector3(currentScaleHP, currentScaleHP, 0);
         fleshAmount.localScale = new Vector3(currentScaleFlesh, currentScaleFlesh, 0);
         sizeModifier = 1 / _organ.maxHP;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public float CalculateScale(float max, float current)
+    {
+        return 1 - (current / max);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (_organ.currentHP > 0)
         {
             _eatingCoroutine = StartCoroutine(EatOrgan());
         }
-        else if(_organ.currentFleshAmount > 0)
+        else if (_organ.currentFleshAmount > 0)
         {
             _eatingCoroutine = StartCoroutine(EatFlesh());
         }
-        
+        else
+        {
+            this.GetComponent<CircleCollider2D>().enabled = false;
+        }
+
         collision.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         StopCoroutine(_eatingCoroutine);
+
     }
 
     private IEnumerator EatOrgan()
     {
         while (true)
         {
-            yield return new WaitForSeconds(_organ.destructionRate);
-
-            _organ.currentHP--;
-            AddPointsToParasite(parasiteGain01);
-            AddPointsToParasite(parasiteGain02);
-
-            hpAmount.localScale += new Vector3(sizeModifier, sizeModifier, 0);
-            if (hpAmount.localScale.x >=1)
+            if (hpAmount.localScale.x >= 1)
             {
                 hpAmount.localScale = Vector2.one;
-                sizeModifier = 1 / _organ.maxFlesh;
-                statIncreaseAmount *= 2;
                 _eatingCoroutine = StartCoroutine(EatFlesh());
                 yield break;
             }
+
+            yield return new WaitForSeconds(_organ.destructionRate);
+
+            AddPointsToParasite(parasiteGain01, statIncreaseAmount);
+            AddPointsToParasite(parasiteGain02, statIncreaseAmount);
+
+            _organ.currentHP--;
+            currentScaleHP = CalculateScale(_organ.maxHP, _organ.currentHP);
+            hpAmount.localScale = new Vector3(currentScaleHP, currentScaleHP, 0);
+
+            
         }
 
     }
@@ -118,36 +115,43 @@ public class OrganInteraction : MonoBehaviour
     {
         while (true)
         {
-            _organ.currentFleshAmount--;
-            AddPointsToParasite(parasiteGain01);
-            AddPointsToParasite(parasiteGain02);
-
-            fleshAmount.localScale += new Vector3(sizeModifier, sizeModifier, 0);
             if (fleshAmount.localScale.x >= 1)
             {
                 fleshAmount.localScale = Vector2.one;
                 this.GetComponent<CircleCollider2D>().enabled = false;
                 yield break;
             }
+
             yield return new WaitForSeconds(_organ.destructionRate);
+
+            AddPointsToParasite(parasiteGain01, statIncreaseAmount*2);
+            AddPointsToParasite(parasiteGain02, statIncreaseAmount*2);
+
+            _organ.currentFleshAmount--;
+            currentScaleFlesh = CalculateScale(_organ.maxFlesh, _organ.currentFleshAmount);
+            fleshAmount.localScale = new Vector3(currentScaleFlesh, currentScaleFlesh, 0);
+
+            
         }
 
     }
-    private void AddPointsToParasite(ParasiteStats stats)
+
+
+    public void AddPointsToParasite(FoodTypes stats, int increase)
     {
         switch (stats)
         {
-            case ParasiteStats.blue:
+            case FoodTypes.blue:
                 if(_parasite.statBlue < _parasite.statBlueMax)
-                    _parasite.statBlue += statIncreaseAmount;
+                    _parasite.statBlue += increase;
                 break;
-            case ParasiteStats.red:
+            case FoodTypes.red:
                 if (_parasite.statRed < _parasite.statRedMax)
-                    _parasite.statRed += statIncreaseAmount;
+                    _parasite.statRed += increase;
                 break;
-            case ParasiteStats.yellow:
+            case FoodTypes.yellow:
                 if (_parasite.statYellow < _parasite.statYellowMax)
-                    _parasite.statYellow += statIncreaseAmount;
+                    _parasite.statYellow += increase;
                 break;
         }
 
@@ -158,5 +162,28 @@ public class OrganInteraction : MonoBehaviour
             FindObjectOfType<CanvasController>().OnGameWon();
 
         }
+    }
+
+
+    public IEnumerator LooseLife(int timer)
+    {
+        while(timer > 0)
+        {
+            yield return new WaitForSeconds(3f);
+
+            if(_organ.currentHP > 0)
+            {
+                _organ.currentHP--;
+                currentScaleHP = CalculateScale(_organ.maxHP, _organ.currentHP);
+                hpAmount.localScale = new Vector3(currentScaleHP, currentScaleHP, 0);
+            }
+            else
+            {
+                yield break;
+            }
+            timer--;
+        }
+
+        yield return null;
     }
 }
