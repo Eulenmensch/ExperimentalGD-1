@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 570546445583191132}
+  - component: {fileID: 325053762}
   m_Layer: 0
   m_Name: FoodSpawner
   m_TagString: Untagged
@@ -30,3 +31,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &325053762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570546445583191133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603d691f63aa76646b021109170b0350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodPrefab00: {fileID: 92578780143884581, guid: 8452d805a1e56bc4bbefad6c5c38ccef,
+    type: 3}
+  foodPrefab01: {fileID: 6509309911683466421, guid: 5434169a3b51bfc40b92962e9e3e939b,
+    type: 3}
+  foodPrefab02: {fileID: 4219784500770550616, guid: 8d5ed41a8fbe54940b01308b30b314d6,
+    type: 3}
+  organ00: {fileID: 0}
+  organ01: {fileID: 0}
+  organ02: {fileID: 0}
+  spawnRate00: 5
+  spawnRate01: 5
+  spawnRate02: 5
+  minBounds: {x: -15, y: -8}
+  maxBounds: {x: 15, y: 8}

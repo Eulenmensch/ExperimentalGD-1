@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 6058386436863297980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6.398126, y: 6.398126, z: 6.398126}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,9 +113,9 @@ MonoBehaviour:
   statBlue: 0
   statRed: 0
   statYellow: 0
-  statBlueMax: 10
-  statRedMax: 10
-  statYellowMax: 10
+  statBlueMax: 100
+  statRedMax: 100
+  statYellowMax: 100
 --- !u!114 &6058386436863297974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 2
-  minPower: {x: -3, y: -3}
-  maxPower: {x: 3, y: 3}
+  minPower: {x: -5, y: -5}
+  maxPower: {x: 5, y: 5}
 --- !u!114 &4277862373367955163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -250,7 +250,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 3
     widthCurve:
       serializedVersion: 2
       m_Curve:

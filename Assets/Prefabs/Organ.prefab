@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 16126622547184566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 38.388756, y: 38.388756, z: 6.398126}
   m_Children:
   - {fileID: 627385597951044034}
   - {fileID: 7798758128383516210}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dfbadcd5b19e9a745b0aabb9dda4487e, type: 3}
-  m_Color: {r: 0.87058824, g: 0.6509804, b: 0.0627451, a: 0.7294118}
+  m_Color: {r: 0.5613208, g: 1, b: 0.72532386, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,13 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac7c9ea1b0167b44a7751903d461591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parasite: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
-    type: 3}
+  _parasite: {fileID: 0}
   parasiteGain01: 0
-  parasiteGain02: 0
-  statIncreaseAmount: 0
-  organIndex: 0
+  parasiteGain02: 2
+  statIncreaseAmount: 1
+  organIndex: 2
   _organ:
+    maxHP: 0
+    maxFlesh: 0
     currentHP: 0
     currentFleshAmount: 0
     destructionRate: 0
@@ -114,6 +115,9 @@ MonoBehaviour:
       b: 0
       a: 0
     effects: []
+  hpAmount: {fileID: 0}
+  fleshAmount: {fileID: 0}
+  sizeModifier: 0
 --- !u!58 &16126622547184560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -282,7 +286,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dfbadcd5b19e9a745b0aabb9dda4487e, type: 3}
-  m_Color: {r: 0.7075472, g: 0.62411004, b: 0.62411004, a: 1}
+  m_Color: {r: 0.64413494, g: 0.6920464, b: 0.7075472, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

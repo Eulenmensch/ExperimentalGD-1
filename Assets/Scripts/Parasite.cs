@@ -44,8 +44,4 @@ public class Parasite: MonoBehaviour
 	{
 		// recover trailPositions from each player and draw them on screen.
 	}
-
-
-
-
 }

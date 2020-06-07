@@ -12,8 +12,7 @@ public class OrganInteraction : MonoBehaviour
     public FoodTypes parasiteGain02;
     public int statIncreaseAmount;
 
-    Transform _attackedOrgan;
-    Coroutine _eatingCoroutine;
+    public Coroutine _eatingCoroutine;
 
 	public int organIndex;
     public Organ _organ;
@@ -24,6 +23,8 @@ public class OrganInteraction : MonoBehaviour
     public float sizeModifier;
     float currentScaleHP;
     float currentScaleFlesh;
+
+    FoodSpawner foodSpawner;
 
     private void OnEnable()
     {
@@ -36,6 +37,7 @@ public class OrganInteraction : MonoBehaviour
 
     private void Initialize()
     {
+        foodSpawner = FindObjectOfType<FoodSpawner>();
         _organ = FindObjectOfType<GameStateManager>().gameStateData.organs[organIndex];
 
         if (this.gameObject.transform.childCount > 1)
@@ -86,7 +88,24 @@ public class OrganInteraction : MonoBehaviour
 
     }
 
-    private IEnumerator EatOrgan()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Food") && collision.GetComponent<Food>()._targetOrgan.name == this.name)
+        {
+            if(_organ.currentHP > 0)
+            {
+                if (_organ.currentHP < _organ.maxHP)
+                {
+                    _organ.currentHP++;
+                }
+                currentScaleHP = CalculateScale(_organ.maxHP, _organ.currentHP);
+                hpAmount.localScale = new Vector3(currentScaleHP, currentScaleHP, 0);
+            }
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public IEnumerator EatOrgan()
     {
         while (true)
         {
@@ -111,8 +130,9 @@ public class OrganInteraction : MonoBehaviour
 
     }
 
-    private IEnumerator EatFlesh()
+    public IEnumerator EatFlesh()
     {
+        SetOrganAsDead();
         while (true)
         {
             if (fleshAmount.localScale.x >= 1)
@@ -130,12 +150,25 @@ public class OrganInteraction : MonoBehaviour
             _organ.currentFleshAmount--;
             currentScaleFlesh = CalculateScale(_organ.maxFlesh, _organ.currentFleshAmount);
             fleshAmount.localScale = new Vector3(currentScaleFlesh, currentScaleFlesh, 0);
-
-            
         }
 
     }
 
+    void SetOrganAsDead()
+    {
+        if (this.name.Contains("00"))
+        {
+            foodSpawner.stillAlive00 = false;
+        }
+        if (this.name.Contains("01"))
+        {
+            foodSpawner.stillAlive01 = false;
+        }
+        if (this.name.Contains("02"))
+        {
+            foodSpawner.stillAlive02 = false;
+        }
+    }
 
     public void AddPointsToParasite(FoodTypes stats, int increase)
     {

@@ -15,9 +15,8 @@ public class Effect
 
     public EffectType effectType;
     public int instantGain = 3;
-    public int moreFood = 2;
     public int moreTime = 30;
-    public int regenRate = 2;
+
 
     List<Subeffect> subeffects;
 

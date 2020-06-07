@@ -16,8 +16,14 @@ public class CanvasController : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject timer;
 
-	public void ShowStartScreen()
+    private void Start()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ShowStartScreen()
 	{
+
 		startScreen.SetActive(true);
 	}
 
@@ -38,6 +44,7 @@ public class CanvasController : MonoBehaviour
 	public void StartNewChain()
 	{
 		gameStateManager.CreateNewState();
+        Time.timeScale = 1;
         timer.SetActive(true);
         
 	}
@@ -46,6 +53,7 @@ public class CanvasController : MonoBehaviour
 	{
 		gameStateManager.EggCode = codeInputField.text;
 		gameStateManager.LoadState();
+        Time.timeScale = 1;
         timer.SetActive(true);
 
     }
