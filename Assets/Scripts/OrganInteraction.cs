@@ -202,7 +202,7 @@ public class OrganInteraction : MonoBehaviour
     {
         while(timer > 0)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
 
             if(_organ.currentHP > 0)
             {
