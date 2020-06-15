@@ -60,6 +60,7 @@ public class CanvasController : MonoBehaviour
 
     public void OnGameWon()
 	{
+        FindObjectOfType<GameStateManager>().SaveState();
 		codetoShow.text = gameStateManager.gameStateData.code;
 		ShowEndScreen();
 	}

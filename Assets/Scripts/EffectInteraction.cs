@@ -112,7 +112,7 @@ public class EffectInteraction : MonoBehaviour
     void ApplyMoreTime()
     {
         FindObjectOfType<Timer>().timer += _effect.moreTime;
-        StartCoroutine(_organInteraction.LooseLife(_effect.moreTime * 2));
+        StartCoroutine(_organInteraction.LoseLife(_effect.moreTime * 2));
     }
 
     void ApplyRegeneration()

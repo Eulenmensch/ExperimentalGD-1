@@ -2698,6 +2698,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+        type: 3}
+      propertyPath: statBlueMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+        type: 3}
+      propertyPath: statRedMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+        type: 3}
+      propertyPath: statYellowMax
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6058386436863297972, guid: 124659d7a2a612f479c3356d1f97b1b7,
         type: 3}
       propertyPath: m_LocalPosition.x

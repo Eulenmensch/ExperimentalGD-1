@@ -188,9 +188,9 @@ public class OrganInteraction : MonoBehaviour
                 break;
         }
 
-        if(_parasite.statBlue == _parasite.statBlueMax 
-            && _parasite.statRed == _parasite.statRedMax 
-            && _parasite.statYellow == _parasite.statYellowMax)
+        if(_parasite.statBlue >= _parasite.statBlueMax 
+            && _parasite.statRed >= _parasite.statRedMax 
+            && _parasite.statYellow >= _parasite.statYellowMax)
         {
             FindObjectOfType<CanvasController>().OnGameWon();
 
@@ -198,7 +198,7 @@ public class OrganInteraction : MonoBehaviour
     }
 
 
-    public IEnumerator LooseLife(int timer)
+    public IEnumerator LoseLife(int timer)
     {
         while(timer > 0)
         {
