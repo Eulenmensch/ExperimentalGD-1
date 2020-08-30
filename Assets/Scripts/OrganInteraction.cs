@@ -190,7 +190,8 @@ public class OrganInteraction : MonoBehaviour
 
         if(_parasite.statBlue >= _parasite.statBlueMax 
             && _parasite.statRed >= _parasite.statRedMax 
-            && _parasite.statYellow >= _parasite.statYellowMax)
+            && _parasite.statYellow >= _parasite.statYellowMax
+            && GameStateManager.instance.gameWon == false)
         {
             FindObjectOfType<CanvasController>().OnGameWon();
 

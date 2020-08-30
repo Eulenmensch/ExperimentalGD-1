@@ -36,6 +36,7 @@ public class DrawTrail : MonoBehaviour
         playerPositions.Clear();
         playerPositions.Add(parasite.transform.position);
         playerPositions.Add(parasite.transform.position);
+        lineRenderer.sortingOrder = 6;
         lineRenderer.SetPosition(0, playerPositions[0]);
         lineRenderer.SetPosition(1, playerPositions[1]);
     }

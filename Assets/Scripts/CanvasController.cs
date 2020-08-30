@@ -38,7 +38,15 @@ public class CanvasController : MonoBehaviour
 	}
 	public void QuitGame()
 	{
+			
 		Application.Quit();
+#if UNITY_EDITOR
+
+		if (UnityEditor.EditorApplication.isPlaying)
+		{
+			UnityEditor.EditorApplication.isPlaying = false;
+		}
+#endif
 	}
 
 	public void StartNewChain()
@@ -60,6 +68,7 @@ public class CanvasController : MonoBehaviour
 
     public void OnGameWon()
 	{
+		GameStateManager.instance.gameWon = true;
         FindObjectOfType<GameStateManager>().SaveState();
 		codetoShow.text = gameStateManager.gameStateData.code;
 		ShowEndScreen();

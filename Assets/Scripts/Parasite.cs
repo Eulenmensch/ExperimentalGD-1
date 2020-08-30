@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class Parasite: MonoBehaviour
 {
@@ -15,11 +17,19 @@ public class Parasite: MonoBehaviour
     public int statRedMax;
     public int statYellowMax;
 
-    // Start is called before the first frame update
-    void Start()
+	public Image redStatCircle;
+	public Image yellowStatCircle;
+	public Image blueStatCircle;
+
+	// Start is called before the first frame update
+	void Start()
     {
         GetComponent<DrawTrail>().CreateTrail();
     }
+	private void Update()
+	{
+		UpdateStats();
+	}
 
 	public void GeneratePlayer()
 	{
@@ -43,5 +53,11 @@ public class Parasite: MonoBehaviour
 	public void LoadHistoricTrails()
 	{
 		// recover trailPositions from each player and draw them on screen.
+	}
+	public void UpdateStats()
+	{
+		redStatCircle.fillAmount = (float) statRed /  (float) statRedMax;
+		yellowStatCircle.fillAmount = (float) statBlue / (float) statBlueMax;
+		blueStatCircle.fillAmount = (float) statYellow / (float) statYellowMax;
 	}
 }

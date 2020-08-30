@@ -6,6 +6,7 @@ using System.IO;
 
 public class GameStateManager : MonoBehaviour
 {
+    public static GameStateManager instance; 
     public GameStateData gameStateData;
     public bool initilaized = false;
     public System.Action OnInitialized;
@@ -17,10 +18,12 @@ public class GameStateManager : MonoBehaviour
     string serializedData;
     public string EggCode;
 
+    public bool gameWon = false;
+
 
     private void Awake()
     {
-
+        instance = this;
         _parasite = FindObjectOfType<Parasite>();
 
     }

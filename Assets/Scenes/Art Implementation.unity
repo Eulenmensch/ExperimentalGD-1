@@ -423,6 +423,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 171246598}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &182952960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9188551996630451698, guid: ef79d1b650550d84e9138bf577d7e328,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473137694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &185501554 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2308002846722556628, guid: 85db44d563e8ecd4693c40a44c8c8c82,
@@ -1022,6 +1034,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0f9c07233a8a1249ac23dc2a3f00358, type: 3}
+--- !u!114 &343260848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9188551996885336842, guid: ef79d1b650550d84e9138bf577d7e328,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473137694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &364512481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1954,6 +1978,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1871173287}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &861838288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9188551997235056805, guid: ef79d1b650550d84e9138bf577d7e328,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473137694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &867895069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3731,45 +3767,60 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9188551996630451696, guid: ef79d1b650550d84e9138bf577d7e328,
+        type: 3}
+      propertyPath: m_Name
+      value: BlueStat
+      objectReference: {fileID: 0}
     - target: {fileID: 9188551996630451698, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.73424315
       objectReference: {fileID: 0}
     - target: {fileID: 9188551996630451698, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.7254902
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188551996630451698, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.56078434
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9188551996630451698, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_FillAmount
       value: 0.766
       objectReference: {fileID: 0}
+    - target: {fileID: 9188551996885336840, guid: ef79d1b650550d84e9138bf577d7e328,
+        type: 3}
+      propertyPath: m_Name
+      value: YellowStat
+      objectReference: {fileID: 0}
     - target: {fileID: 9188551996885336842, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.5019608
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188551996885336842, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.18823531
+      value: 0.9160185
       objectReference: {fileID: 0}
     - target: {fileID: 9188551996885336842, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.48627454
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9188551996885336842, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_FillAmount
       value: 0.387
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188551997235056803, guid: ef79d1b650550d84e9138bf577d7e328,
+        type: 3}
+      propertyPath: m_Name
+      value: RedStat
       objectReference: {fileID: 0}
     - target: {fileID: 9188551997235056805, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
@@ -3779,12 +3830,12 @@ PrefabInstance:
     - target: {fileID: 9188551997235056805, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.24056602
       objectReference: {fileID: 0}
     - target: {fileID: 9188551997235056805, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.5254902
+      value: 0.36311778
       objectReference: {fileID: 0}
     - target: {fileID: 9188551997235056805, guid: ef79d1b650550d84e9138bf577d7e328,
         type: 3}
@@ -5634,6 +5685,21 @@ PrefabInstance:
       propertyPath: statYellowMax
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+        type: 3}
+      propertyPath: redStatCircle
+      value: 
+      objectReference: {fileID: 861838288}
+    - target: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+        type: 3}
+      propertyPath: yellowStatCircle
+      value: 
+      objectReference: {fileID: 343260848}
+    - target: {fileID: 2509524962114685039, guid: 124659d7a2a612f479c3356d1f97b1b7,
+        type: 3}
+      propertyPath: blueStatCircle
+      value: 
+      objectReference: {fileID: 182952960}
     - target: {fileID: 6058386436863297971, guid: 124659d7a2a612f479c3356d1f97b1b7,
         type: 3}
       propertyPath: m_Parameters.numCornerVertices
